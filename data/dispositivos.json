@@ -1,0 +1,26 @@
+[
+{
+    "id": 1,
+    "nombre": "Medidor inteligente",
+    "estado": "Activo",
+    "consumo_kwh": 18.4
+},
+{
+    "id": 2,
+    "nombre": "Sensor de temperatura",
+    "estado": "Activo",
+    "consumo_kwh": 4.2
+},
+{
+    "id": 3,
+    "nombre": "Climatizador",
+    "estado": "Revisión",
+    "consumo_kwh": 32.7
+},
+{
+    "id": 4,
+    "nombre": "Iluminación LED",
+    "estado": "Activo",
+    "consumo_kwh": 7.5
+}
+]

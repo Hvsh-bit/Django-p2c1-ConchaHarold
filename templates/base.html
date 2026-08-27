@@ -1,17 +1,46 @@
-<!-- templates/base.html -->
+{% load django_bootstrap5 %}
 <!doctype html>
 <html lang="es">
     <head>
         <meta charset="utf-8">
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1"
+        >
         <title>{% block title %}EcoEnergy{% endblock %}</title>
+        {% bootstrap_css %}
     </head>
-    <body>
-        <nav>
-            <a href="{% url 'dispositivos:inicio' %}">Inicio</a>
-            <a href="{% url 'dispositivos:catalogo' %}">Dispositivos</a>
+    <body class="bg-body-tertiary">
+        <nav class="navbar navbar-expand bg-dark navbar-dark">
+            <div class="container">
+                <a
+                    class="navbar-brand"
+                    href="{% url 'dispositivos:inicio' %}"
+                >
+                    EcoEnergy
+                </a>
+
+                <div class="navbar-nav">
+                    <a
+                        class="nav-link"
+                        href="{% url 'dispositivos:inicio' %}"
+                    >
+                        Inicio
+                    </a>
+                    <a
+                        class="nav-link"
+                        href="{% url 'dispositivos:catalogo' %}"
+                    >
+                        Dispositivos
+                    </a>
+                </div>
+            </div>
         </nav>
-        <main>
+
+        <main class="container py-4">
             {% block content %}{% endblock %}
         </main>
+
+        {% bootstrap_javascript %}
     </body>
 </html>

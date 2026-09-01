@@ -1,26 +1,58 @@
 [
-{
-    "id": 1,
-    "nombre": "Medidor inteligente",
-    "estado": "Activo",
-    "consumo_kwh": 18.4
-},
-{
-    "id": 2,
-    "nombre": "Sensor de temperatura",
-    "estado": "Activo",
-    "consumo_kwh": 4.2
-},
-{
-    "id": 3,
-    "nombre": "Climatizador",
-    "estado": "Revisión",
-    "consumo_kwh": 32.7
-},
-{
-    "id": 4,
-    "nombre": "Iluminación LED",
-    "estado": "Activo",
-    "consumo_kwh": 7.5
-}
+    {
+        "id": 1,
+        "nombre": "Medidor inteligente",
+        "consumo_kwh": 18.4,
+        "zona_id": 1,
+        "categoria_id": 1
+    },
+    {
+        "id": 2,
+        "nombre": "Sensor de temperatura",
+        "consumo_kwh": 4.2,
+        "zona_id": 2,
+        "categoria_id": 1
+    },
+    {
+        "id": 3,
+        "nombre": "Climatizador",
+        "consumo_kwh": 32.7,
+        "zona_id": 1,
+        "categoria_id": 2
+    },
+    {
+        "id": 4,
+        "nombre": "Iluminación LED",
+        "consumo_kwh": 7.5,
+        "zona_id": 1,
+        "categoria_id": 3
+    },
+    {
+        "id": 5,
+        "nombre": "UPS industrial",
+        "consumo_kwh": 12.8,
+        "zona_id": 2,
+        "categoria_id": 1
+    },
+    {
+        "id": 6,
+        "nombre": "Extractor industrial",
+        "consumo_kwh": 15.3,
+        "zona_id": 2,
+        "categoria_id": 2
+    },
+    {
+        "id": 7,
+        "nombre": "Luminaria exterior",
+        "consumo_kwh": 6.8,
+        "zona_id": 3,
+        "categoria_id": 3
+    },
+    {
+        "id": 8,
+        "nombre": "Sensor de humedad",
+        "consumo_kwh": 3.6,
+        "zona_id": 3,
+        "categoria_id": 1
+    }
 ]

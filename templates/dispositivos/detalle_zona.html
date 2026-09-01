@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block title %}{{ zona.nombre }} | EcoEnergy{% endblock %}
+
+{% block content %}
+    <nav aria-label="Ruta de navegación" class="mb-4">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item">
+                <a href="{% url 'dispositivos:lista_zonas' %}">
+                    Zonas
+                </a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                {{ zona.nombre }}
+            </li>
+        </ol>
+    </nav>
+
+    <header class="mb-4">
+        <h1 class="display-5 fw-bold mb-2">{{ zona.nombre }}</h1>
+        <p class="lead text-body-secondary mb-0">
+            Consumo energético y dispositivos instalados.
+        </p>
+    </header>
+
+    <section
+        class="bg-dark text-white rounded-3 p-4 mb-4 mb-lg-5"
+        aria-label="Resumen energético de la zona"
+    >
+        <div class="row g-4 align-items-start">
+            <div class="col-6 col-lg-3">
+                <div class="text-white-50 mb-1">Límite permitido</div>
+                <div class="h4 mb-0">
+                    {{ zona.limite_kwh|floatformat:1 }}&nbsp;kWh
+                </div>
+            </div>
+            <div class="col-6 col-lg-3">
+                <div class="text-white-50 mb-1">Consumo total</div>
+                <div class="h4 mb-0">
+                    {{ total_consumo|floatformat:1 }}&nbsp;kWh
+                </div>
+            </div>
+            <div class="col-6 col-lg-3">
+                <div class="text-white-50 mb-1">Dispositivos</div>
+                <div class="h4 mb-0">{{ cantidad }}</div>
+            </div>
+            <div class="col-6 col-lg-3">
+                <div class="text-white-50 mb-1">Estado</div>
+                {% if estado == "ALERTA" %}
+                    <span class="badge text-bg-danger fs-6">
+                        ALERTA
+                    </span>
+                    <div class="small mt-2">
+                        Consumo sobre el límite.
+                    </div>
+                {% else %}
+                    <span class="badge text-bg-success fs-6">
+                        NORMAL
+                    </span>
+                    <div class="small mt-2">
+                        Consumo dentro del límite.
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <section aria-labelledby="titulo-dispositivos-zona">
+        <div class="d-flex flex-wrap gap-3 justify-content-between align-items-center mb-3">
+            <h2 id="titulo-dispositivos-zona" class="h4 mb-0">
+                Dispositivos instalados
+            </h2>
+            <a
+                class="btn btn-outline-secondary text-nowrap"
+                href="{% url 'dispositivos:lista_zonas' %}"
+            >
+                Volver a zonas
+            </a>
+        </div>
+
+        <div class="table-responsive bg-body border rounded-3">
+            <table class="table table-hover align-middle mb-0">
+                <caption class="visually-hidden">
+                    Dispositivos instalados en {{ zona.nombre }}
+                </caption>
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col" class="ps-3">Dispositivo</th>
+                        <th scope="col">Categoría</th>
+                        <th scope="col" class="text-end pe-3">
+                            Consumo
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for dispositivo in dispositivos %}
+                        <tr>
+                            <th scope="row" class="ps-3 fw-semibold">
+                                {{ dispositivo.nombre }}
+                            </th>
+                            <td>{{ dispositivo.categoria_nombre }}</td>
+                            <td class="text-end pe-3">
+                                {{ dispositivo.consumo_kwh|floatformat:1 }}&nbsp;kWh
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="3" class="text-center py-5">
+                                Esta zona no tiene dispositivos.
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}

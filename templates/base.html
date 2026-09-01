@@ -10,36 +10,61 @@
         <title>{% block title %}EcoEnergy{% endblock %}</title>
         {% bootstrap_css %}
     </head>
-    <body class="bg-body-tertiary">
-        <nav class="navbar navbar-expand bg-dark navbar-dark">
+    <body class="bg-body-tertiary d-flex flex-column min-vh-100">
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
             <div class="container">
                 <a
-                    class="navbar-brand"
+                    class="navbar-brand fw-bold"
                     href="{% url 'dispositivos:inicio' %}"
                 >
                     EcoEnergy
                 </a>
 
-                <div class="navbar-nav">
-                    <a
-                        class="nav-link"
-                        href="{% url 'dispositivos:inicio' %}"
-                    >
-                        Inicio
-                    </a>
-                    <a
-                        class="nav-link"
-                        href="{% url 'dispositivos:catalogo' %}"
-                    >
-                        Dispositivos
-                    </a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navegacionPrincipal"
+                    aria-controls="navegacionPrincipal"
+                    aria-expanded="false"
+                    aria-label="Mostrar navegación"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div
+                    class="collapse navbar-collapse"
+                    id="navegacionPrincipal"
+                >
+                    <div class="navbar-nav ms-auto">
+                        <a
+                            class="nav-link{% if request.resolver_match.url_name == 'inicio' %} active{% endif %}"
+                            href="{% url 'dispositivos:inicio' %}"
+                            {% if request.resolver_match.url_name == 'inicio' %}aria-current="page"{% endif %}
+                        >
+                            Inicio
+                        </a>
+                        <a
+                            class="nav-link{% if request.resolver_match.url_name == 'lista_zonas' or request.resolver_match.url_name == 'detalle_zona' %} active{% endif %}"
+                            href="{% url 'dispositivos:lista_zonas' %}"
+                            {% if request.resolver_match.url_name == 'lista_zonas' or request.resolver_match.url_name == 'detalle_zona' %}aria-current="page"{% endif %}
+                        >
+                            Zonas
+                        </a>
+                    </div>
                 </div>
             </div>
         </nav>
 
-        <main class="container py-4">
+        <main class="container py-4 py-lg-5 flex-grow-1">
             {% block content %}{% endblock %}
         </main>
+
+        <footer class="border-top bg-body py-3">
+            <div class="container text-body-secondary small">
+                EcoEnergy · Monitoreo de consumo energético
+            </div>
+        </footer>
 
         {% bootstrap_javascript %}
     </body>

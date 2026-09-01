@@ -5,5 +5,10 @@ app_name = "dispositivos"
 
 urlpatterns = [
     path("", views.inicio, name="inicio"),
-    path("dispositivos/", views.catalogo, name="catalogo"),
+    path("zonas/", views.lista_zonas, name="lista_zonas"),
+    path(
+        "zonas/<int:zona_id>/",
+        views.detalle_zona,
+        name="detalle_zona",
+    ),
 ]

@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "nombre": "Medición y monitoreo",
+        "descripcion": "Dispositivos que registran variables y consumo energético."
+    },
+    {
+        "id": 2,
+        "nombre": "Climatización",
+        "descripcion": "Equipos que regulan la temperatura y la ventilación."
+    },
+    {
+        "id": 3,
+        "nombre": "Iluminación",
+        "descripcion": "Dispositivos destinados a la iluminación eficiente."
+    }
+]

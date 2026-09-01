@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Zonas | EcoEnergy{% endblock %}
+
+{% block content %}
+    <header class="row align-items-start gy-3 mb-4 mb-lg-5">
+        <div class="col-lg-8">
+            <h1 class="display-5 fw-bold mb-3">Zonas de consumo</h1>
+            <p class="lead text-body-secondary mb-0">
+                Consulta el límite energético y los dispositivos instalados
+                en cada zona.
+            </p>
+        </div>
+        <div class="col-lg-4 text-lg-end">
+            <span class="badge text-bg-success fs-6 fw-normal px-3 py-2">
+                {{ zonas|length }} zonas registradas
+            </span>
+        </div>
+    </header>
+
+    <section aria-labelledby="titulo-tabla-zonas">
+        <h2 id="titulo-tabla-zonas" class="h4 mb-3">
+            Resumen por zona
+        </h2>
+
+        <div class="table-responsive bg-body border rounded-3">
+            <table class="table table-hover align-middle mb-0">
+                <caption class="visually-hidden">
+                    Zonas de consumo energético registradas
+                </caption>
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col" class="ps-3">Zona</th>
+                        <th scope="col">Límite</th>
+                        <th scope="col">Dispositivos</th>
+                        <th scope="col" class="text-end pe-3">
+                            Acción
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for zona in zonas %}
+                        <tr>
+                            <th scope="row" class="ps-3 fw-semibold">
+                                {{ zona.nombre }}
+                            </th>
+                            <td>{{ zona.limite_kwh|floatformat:1 }}&nbsp;kWh</td>
+                            <td>{{ zona.cantidad_dispositivos }}</td>
+                            <td class="text-end pe-3">
+                                <a
+                                    class="btn btn-outline-success text-nowrap"
+                                    href="{% url 'dispositivos:detalle_zona' zona.id %}"
+                                >
+                                    Ver detalle
+                                </a>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center py-5">
+                                No hay zonas disponibles.
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}

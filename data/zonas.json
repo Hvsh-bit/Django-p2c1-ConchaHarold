@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "nombre": "Oficinas centrales",
+        "limite_kwh": 50.0
+    },
+    {
+        "id": 2,
+        "nombre": "Área de producción",
+        "limite_kwh": 45.0
+    },
+    {
+        "id": 3,
+        "nombre": "Bodega",
+        "limite_kwh": 20.0
+    }
+]

@@ -11,4 +11,6 @@ urlpatterns = [
         views.detalle_zona,
         name="detalle_zona",
     ),
+    path("resumen-zonas/", views.resumen_zonas, name="resumen_zonas"),
 ]
+

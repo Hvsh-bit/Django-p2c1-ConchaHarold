@@ -49,7 +49,6 @@ def lista_zonas(request):
 
 def detalle_zona(request, zona_id):
     zonas = cargar_json("zonas.json")
-    zona = buscar_por_id(zonas, zona_id)
 
     if zona is None:
         raise Http404("Zona no encontrada")
@@ -101,4 +100,31 @@ def detalle_zona(request, zona_id):
         request,
         "dispositivos/detalle_zona.html",
         contexto,
+    ) 
+
+def resumen_zonas(request):
+    zonas = cargar_json("zonas.json")
+    dispositivos = cargar_json("dispositivos.json")
+
+    cantidades_por_zona = Counter(
+        dispositivo["zona_id"]
+        for dispositivo in dispositivos
     )
+
+    zonas_con_resumen = [
+        {
+            **zona,
+            "cantidad_dispositivos": cantidades_por_zona.get(
+                zona["id"],
+                0,
+            ),
+        }
+        for zona in zonas
+    ]
+
+    return render(
+        request,
+        "dispositivos/resumen_zonas.html",
+        {"zonas": zonas_con_resumen},
+    )
+

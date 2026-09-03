@@ -50,6 +50,12 @@
                             {% if request.resolver_match.url_name == 'lista_zonas' or request.resolver_match.url_name == 'detalle_zona' %}aria-current="page"{% endif %}
                         >
                             Zonas
+                        <a
+                            class="nav-link{% if request.resolver_match.url_name == 'resumen_zonas' %} active{% endif %}"
+                            href="{% url 'dispositivos:resumen_zonas' %}"
+                            {% if request.resolver_match.url_name == 'resumen_zonas' %}aria-current="page"{% endif %}
+                        >
+                            Resumen
                         </a>
                     </div>
                 </div>
@@ -65,7 +71,6 @@
                 EcoEnergy · Monitoreo de consumo energético
             </div>
         </footer>
-
         {% bootstrap_javascript %}
     </body>
 </html>

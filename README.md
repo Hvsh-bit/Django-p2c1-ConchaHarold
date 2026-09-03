@@ -16,7 +16,7 @@ Python y la presentación utiliza Templates de Django con Bootstrap 5.
 
 ## Requisitos
 
-- Python 3.14 o una versión compatible con Django 6.1.
+- Python 3.12 o superior.
 - Django 6.1.
 - django-bootstrap5 26.2.
 
@@ -107,17 +107,18 @@ git clone https://github.com/Hvsh-bit/Django-p2c1-ConchaHarold.git
 cd Django-p2c1-ConchaHarold
 ```
 
-Crea y activa un entorno virtual:
+Crea y activa un entorno virtual en macOS o Linux:
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-En Windows, la activación se realiza con:
+En Windows PowerShell, crea y activa el entorno con:
 
 ```powershell
-.venv\Scripts\activate
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
 ```
 
 Instala y comprueba las dependencias:
@@ -125,7 +126,12 @@ Instala y comprueba las dependencias:
 ```bash
 python -m pip install -r requirements.txt
 python -m pip check
+python manage.py migrate
 ```
+
+La migración crea `db.sqlite3` en cada equipo. Este archivo y `.venv` son
+locales y están excluidos por `.gitignore`, por lo que no se transfieren con
+Git y deben volver a generarse después de clonar el repositorio.
 
 ## Ejecución
 
@@ -137,6 +143,25 @@ python manage.py runserver
 ```
 
 Abre `http://127.0.0.1:8000/` en el navegador.
+
+## Reutilización en otro equipo
+
+Antes de cambiar de equipo, revisa el estado. Si existen cambios pendientes,
+agrégalos y crea un commit antes de enviarlos al repositorio remoto:
+
+```bash
+git status
+git add .
+git commit -m "Guarda avances del proyecto"
+git push origin main
+```
+
+Si `git status` indica que no hay cambios pendientes, solo necesitas ejecutar
+`git push origin main`.
+
+En el equipo nuevo, sigue la sección de instalación desde `git clone`. No
+copies `.venv` ni `db.sqlite3`: crea un entorno virtual nuevo, instala
+`requirements.txt` y ejecuta las migraciones.
 
 ## Rutas funcionales
 
